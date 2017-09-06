@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script.
+      window.addEventListener('load', function() {
+      if (typeof web3 != 'undefined') {
+      web3 = new Web3(web3.currentProvider);
+      console.log('Yay! web3 is present')
+      } else {
+      console.log('No web3? You should consider trying MetaMask!')
+      web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/jusRhRm9lPsVCXFLnnNk"));
+      }
+      var abi =[{"constant":true,"inputs":[{"name":"_patientId","type":"string"}],"name":"getAllDetails","outputs":[{"name":"_name","type":"string"},{"name":"_weight","type":"uint256"},{"name":"_dob","type":"string"},{"name":"_bg","type":"string"},{"name":"_disease","type":"string"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_patientId","type":"string"}],"name":"getPatientDOB","outputs":[{"name":"","type":"string"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_patientId","type":"string"},{"name":"_name","type":"string"},{"name":"_weight","type":"uint256"},{"name":"_DOB","type":"string"},{"name":"_bloodGroup","type":"string"},{"name":"_disease","type":"string"}],"name":"storePatientData","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_patientId","type":"string"}],"name":"getPatientWeight","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_patientId","type":"string"}],"name":"getPatientName","outputs":[{"name":"","type":"string"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_patientId","type":"string"}],"name":"getPatientBG","outputs":[{"name":"","type":"string"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_patientId","type":"string"}],"name":"getPatientDisease","outputs":[{"name":"","type":"string"}],"payable":false,"type":"function"}];
+      var MyContract = web3.eth.contract(abi);
+      var myContractInstance = MyContract.at('0x96eadf319a3c1cf846d2f2704a6269034f407b74');
+      check_test(web3,abi,MyContract,myContractInstance);
+      })
+
+  body
+    block content
+    script(src='/javascripts/outscripts/test.js')
