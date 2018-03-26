@@ -52,3 +52,5 @@ app.all("/", function(req, res){
 });
 
 module.exports = app;
+
+app.listen(8081);
